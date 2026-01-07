@@ -73,6 +73,7 @@
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(250, 45);
             trackBar1.TabIndex = 4;
+            trackBar1.ValueChanged += TrackBar1_ValueChanged;
             // 
             // button1
             // 
@@ -82,6 +83,7 @@
             button1.TabIndex = 5;
             button1.Text = "Inciar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += Button1_Click;
             // 
             // button2
             // 
@@ -91,6 +93,7 @@
             button2.TabIndex = 6;
             button2.Text = "Parar";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += Button2_Click;
             // 
             // comboBox1
             // 
@@ -99,6 +102,8 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(282, 23);
             comboBox1.TabIndex = 7;
+            comboBox1.DropDown += ComboBox1_DropDown;
+            comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
             // 
             // Form1
             // 
@@ -115,6 +120,8 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Audio Ducking";
+            Load += Form1_Load;
+            MouseMove += Form1_MouseMove;
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
             ResumeLayout(false);
             PerformLayout();
