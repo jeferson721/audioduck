@@ -2,6 +2,23 @@ namespace AudioDuck
 {
     public partial class Form1 : Form
     {
+        bool rodando = false;
+
+        private void AtualizaCor()
+        {
+            if (rodando)
+            {
+                button1.BackColor = Color.PaleGreen;
+                button2.BackColor = Color.LightCoral;
+            }
+            else
+            {
+                button1.BackColor = Color.Gainsboro;
+                button2.BackColor = Color.Gainsboro;
+            }
+
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -9,12 +26,12 @@ namespace AudioDuck
 
         private void Button1_Click(object sender, EventArgs e)
         {
-
+            rodando = true;
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-
+            rodando = false;
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -39,7 +56,7 @@ namespace AudioDuck
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-
+            AtualizaCor();
         }
     }
 }
