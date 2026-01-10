@@ -1,8 +1,11 @@
+using System.Diagnostics;
+
 namespace AudioDuck
 {
     public partial class Form1 : Form
     {
         bool rodando = false;
+        float volumm = 0;
 
         private void AtualizaCor()
         {
@@ -45,8 +48,11 @@ namespace AudioDuck
         }
 
         private void TrackBar1_ValueChanged(object sender, EventArgs e)
-        {
-
+        {           
+            float fd = trackBar1.Value;
+            float v = fd / 100;   
+            label3.Text = fd.ToString();
+            volumm = v;
         }
 
         private void Form1_Load(object sender, EventArgs e)

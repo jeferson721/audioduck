@@ -51,7 +51,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(22, 53);
+            label2.Location = new Point(17, 53);
             label2.Name = "label2";
             label2.Size = new Size(239, 15);
             label2.TabIndex = 2;
@@ -60,11 +60,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(267, 53);
+            label3.Location = new Point(262, 53);
             label3.Name = "label3";
-            label3.Size = new Size(25, 15);
+            label3.Size = new Size(34, 15);
             label3.TabIndex = 3;
-            label3.Text = "000";
+            label3.Text = "0,000";
             // 
             // trackBar1
             // 
@@ -98,9 +98,9 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(15, 24);
+            comboBox1.Location = new Point(13, 24);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(282, 23);
+            comboBox1.Size = new Size(286, 23);
             comboBox1.TabIndex = 7;
             comboBox1.DropDown += ComboBox1_DropDown;
             comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
