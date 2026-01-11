@@ -41,17 +41,17 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(31, 6);
+            label1.Location = new Point(25, 6);
             label1.Name = "label1";
-            label1.Size = new Size(251, 15);
+            label1.Size = new Size(262, 54);
             label1.TabIndex = 1;
-            label1.Text = "Selecione o processo para o ducking de áudio.";
+            label1.Text = "Selecione o processo para o ducking de áudio o processo tem que estar emitindo som para aparecer aqui.";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(17, 53);
+            label2.Location = new Point(17, 89);
             label2.Name = "label2";
             label2.Size = new Size(239, 15);
             label2.TabIndex = 2;
@@ -60,7 +60,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(262, 53);
+            label3.Location = new Point(262, 89);
             label3.Name = "label3";
             label3.Size = new Size(34, 15);
             label3.TabIndex = 3;
@@ -68,7 +68,7 @@
             // 
             // trackBar1
             // 
-            trackBar1.Location = new Point(31, 71);
+            trackBar1.Location = new Point(31, 107);
             trackBar1.Maximum = 100;
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(250, 45);
@@ -77,7 +77,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(78, 108);
+            button1.Location = new Point(78, 144);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 5;
@@ -87,7 +87,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(159, 108);
+            button2.Location = new Point(159, 144);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 6;
@@ -97,8 +97,9 @@
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(13, 24);
+            comboBox1.Location = new Point(13, 63);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(286, 23);
             comboBox1.TabIndex = 7;
@@ -109,7 +110,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(312, 143);
+            ClientSize = new Size(312, 178);
             Controls.Add(comboBox1);
             Controls.Add(button2);
             Controls.Add(button1);

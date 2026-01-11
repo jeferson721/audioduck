@@ -1,11 +1,14 @@
+using System.Data;
 using System.Diagnostics;
+using System.Text;
+using NAudio.CoreAudioApi;
 
 namespace AudioDuck
 {
     public partial class Form1 : Form
     {
         bool rodando = false;
-        float volumm = 0;
+        float volumemestre = 0;
 
         private void AtualizaCor()
         {
@@ -44,15 +47,51 @@ namespace AudioDuck
 
         private void ComboBox1_DropDown(object sender, EventArgs e)
         {
+            comboBox1.Items.Clear();
+            var enumerador = new MMDeviceEnumerator();
+            var dispositivo = enumerador.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+            var sessões = dispositivo.AudioSessionManager.Sessions;
+            int tamanhodalista = 0;
 
+            for (int i = 0; i < sessões.Count; i++)
+            {
+                var sessão = sessões[i];
+                if ((!sessão.DisplayName.Contains("@%SystemRoot%", StringComparison.OrdinalIgnoreCase))) { tamanhodalista++; }
+            }
+
+            object[] arraydeprocessos = new object[tamanhodalista];
+            int contagem = 0;
+
+            for (int i = 0; i < sessões.Count; i++)
+            {
+                var sessão = sessões[i];          
+                StringBuilder tag_processo = new();
+
+                if ((!sessão.DisplayName.Contains("@%SystemRoot%", StringComparison.OrdinalIgnoreCase)))
+                {
+                    int processoId = (int)sessão.GetProcessID;
+                    try
+                    {
+                        Process processo = Process.GetProcessById(processoId);
+                        tag_processo.Append($"{processo.ProcessName}");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro: {ex.Message}");
+                    }
+                    tag_processo.Append($" {sessão.DisplayName} ");
+                    tag_processo.Append($" ID:{sessão.GetProcessID}");
+                    arraydeprocessos[contagem++] = tag_processo;
+                }
+            }
+
+            comboBox1.Items.AddRange(arraydeprocessos);
         }
 
         private void TrackBar1_ValueChanged(object sender, EventArgs e)
-        {           
-            float fd = trackBar1.Value;
-            float v = fd / 100;   
-            label3.Text = fd.ToString();
-            volumm = v;
+        {
+            label3.Text = trackBar1.Value.ToString();
+            volumemestre = trackBar1.Value / 100;
         }
 
         private void Form1_Load(object sender, EventArgs e)
