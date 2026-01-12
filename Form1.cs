@@ -9,6 +9,7 @@ namespace AudioDuck
     {
         bool rodando = false;
         float volumemestre = 0;
+        string meupid = "";
 
         private void AtualizaCor()
         {
@@ -25,6 +26,23 @@ namespace AudioDuck
 
         }
 
+        private bool ProcessoAindaAberto()
+        {
+            string s = meupid;
+            string numeroStr = s.Split(':')[1].Split('_')[0];
+            uint pid = uint.Parse(numeroStr);
+
+            try
+            {
+                var proc = System.Diagnostics.Process.GetProcessById((int)pid);
+                return !proc.HasExited;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -32,12 +50,42 @@ namespace AudioDuck
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            rodando = true;
+            meupid = "";
+            if (comboBox1.SelectedItem != null)
+            {
+                string? itemSelecionado = comboBox1.SelectedItem?.ToString();
+                if (!string.IsNullOrEmpty(itemSelecionado))
+                {
+                    meupid = itemSelecionado;
+                    //rodando = true;
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum item selecionado");
+                    // rodando = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum item selecionado");
+                //rodando = false;
+            }
+            if (ProcessoAindaAberto())
+            {
+                rodando = true;
+            }
+            else
+            {
+                rodando = false;
+            }
+
+            AtualizaCor();
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
             rodando = false;
+            AtualizaCor();
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,7 +112,7 @@ namespace AudioDuck
 
             for (int i = 0; i < sessões.Count; i++)
             {
-                var sessão = sessões[i];          
+                var sessão = sessões[i];
                 StringBuilder tag_processo = new();
 
                 if ((!sessão.DisplayName.Contains("@%SystemRoot%", StringComparison.OrdinalIgnoreCase)))
