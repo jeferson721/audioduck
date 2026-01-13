@@ -10,6 +10,7 @@ namespace AudioDuck
         bool rodando = false;
         float volumemestre = 0;
         string meupid = "";
+        bool parar = false;
 
         private void AtualizaCor()
         {
@@ -43,6 +44,26 @@ namespace AudioDuck
             }
         }
 
+        void Parada()
+        {
+            if (!rodando) return;
+            comboBox1.SelectedItem = null;
+            comboBox1.Items.Clear();
+            meupid = "";
+            try
+            {              
+                rodando = false;
+                MessageBox.Show(" Ducking parado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao parar : {ex.Message}");
+                rodando = true;
+            }
+            AtualizaCor();
+            parar = false;
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -58,6 +79,14 @@ namespace AudioDuck
                 {
                     meupid = itemSelecionado;
                     //rodando = true;
+                    if (ProcessoAindaAberto())
+                    {
+                        rodando = true;
+                    }
+                    else
+                    {
+                        rodando = false;
+                    }
                 }
                 else
                 {
@@ -70,22 +99,14 @@ namespace AudioDuck
                 MessageBox.Show("Nenhum item selecionado");
                 //rodando = false;
             }
-            if (ProcessoAindaAberto())
-            {
-                rodando = true;
-            }
-            else
-            {
-                rodando = false;
-            }
+          
 
             AtualizaCor();
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            rodando = false;
-            AtualizaCor();
+            parar = true;
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -149,7 +170,10 @@ namespace AudioDuck
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            AtualizaCor();
+            if (parar)
+            {
+                Parada();
+            }
         }
     }
 }
