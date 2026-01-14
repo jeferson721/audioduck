@@ -1,7 +1,9 @@
-using System.Data;
-using System.Diagnostics;
-using System.Text;
+
 using NAudio.CoreAudioApi;
+using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading;
 
 namespace AudioDuck
 {
@@ -11,6 +13,7 @@ namespace AudioDuck
         float volumemestre = 0;
         string meupid = "";
         bool parar = false;
+        private CancellationTokenSource cancelador = new();
 
         private void AtualizaCor()
         {
@@ -51,7 +54,8 @@ namespace AudioDuck
             comboBox1.Items.Clear();
             meupid = "";
             try
-            {              
+            {
+                cancelador?.Cancel();
                 rodando = false;
                 MessageBox.Show(" Ducking parado com sucesso!");
             }
@@ -62,6 +66,16 @@ namespace AudioDuck
             }
             AtualizaCor();
             parar = false;
+        }
+
+        private async Task MetodoDeTrabalho(CancellationToken tokendecancelamento)
+        {         
+            while (!tokendecancelamento.IsCancellationRequested)
+            {
+                if (!ProcessoAindaAberto()) { parar = true; break; }
+                
+                await Task.Delay(500, tokendecancelamento);
+            }
         }
 
         public Form1()
@@ -79,12 +93,15 @@ namespace AudioDuck
                 {
                     meupid = itemSelecionado;
                     //rodando = true;
-                    if (ProcessoAindaAberto())
+                    try
                     {
+                        cancelador = new CancellationTokenSource();
+                        Task.Run(async () => await MetodoDeTrabalho(cancelador.Token));
                         rodando = true;
                     }
-                    else
+                    catch (Exception ex)
                     {
+                        MessageBox.Show($"Erro ao lançar o processo: {ex.Message}");
                         rodando = false;
                     }
                 }
