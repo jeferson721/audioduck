@@ -134,11 +134,16 @@ namespace AudioDuck
         private void ComboBox1_DropDown(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
+            // Obtém o dispositivo de áudio padrão (saída de som) usado para multimídia
             var enumerador = new MMDeviceEnumerator();
             var dispositivo = enumerador.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
-            var sessões = dispositivo.AudioSessionManager.Sessions;
-            int tamanhodalista = 0;
 
+            // Pega a lista de todas as sessões de áudio ativas nesse dispositivo
+            var sessões = dispositivo.AudioSessionManager.Sessions;
+
+            // Primeira passada: conta quantas sessões NÃO são do sistema
+            // (exclui coisas como sons do Windows, explorer, etc)
+            int tamanhodalista = 0;
             for (int i = 0; i < sessões.Count; i++)
             {
                 var sessão = sessões[i];
@@ -148,11 +153,13 @@ namespace AudioDuck
             object[] arraydeprocessos = new object[tamanhodalista];
             int contagem = 0;
 
+            // Segunda passada: coleta informações das sessões de aplicativos
             for (int i = 0; i < sessões.Count; i++)
             {
                 var sessão = sessões[i];
                 StringBuilder tag_processo = new();
 
+                // Ignora novamente as sessões do sistema
                 if ((!sessão.DisplayName.Contains("@%SystemRoot%", StringComparison.OrdinalIgnoreCase)))
                 {
                     int processoId = (int)sessão.GetProcessID;
