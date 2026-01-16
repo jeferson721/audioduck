@@ -71,9 +71,30 @@ namespace AudioDuck
         private async Task MetodoDeTrabalho(CancellationToken tokendecancelamento)
         {         
             while (!tokendecancelamento.IsCancellationRequested)
-            {
+            {                        
+     
+                bool audioemalgumlugar = false;
+                AudioSessionControl? Minhasession = null;
+
                 if (!ProcessoAindaAberto()) { parar = true; break; }
-                
+
+                if (Minhasession != null)
+                {
+                    Debug.WriteLine($" VOLUME=|{Minhasession.SimpleAudioVolume.Volume}| ");
+
+
+                    if (audioemalgumlugar)
+                    {
+                        Debug.WriteLine($" BAIXO |{volumemestre:F5}|");
+                        Minhasession.SimpleAudioVolume.Volume = volumemestre;
+                    }
+                    else
+                    {
+                        Debug.WriteLine($" ALTO ");
+                        Minhasession.SimpleAudioVolume.Volume = 1;
+                    }
+                }
+                Debug.WriteLine($"--------------------------------------------------------------");
                 await Task.Delay(500, tokendecancelamento);
             }
         }
