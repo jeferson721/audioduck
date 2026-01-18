@@ -9,11 +9,13 @@ namespace AudioDuck
 {
     public partial class Form1 : Form
     {
+        
         bool rodando = false;
         float volumemestre = 0;
         string meupid = "";
         bool parar = false;
         private CancellationTokenSource cancelador = new();
+        private const int atualizaçãoporsegundo = 300;
 
         private void AtualizaCor()
         {
@@ -95,7 +97,7 @@ namespace AudioDuck
                     }
                 }
                 Debug.WriteLine($"--------------------------------------------------------------");
-                await Task.Delay(500, tokendecancelamento);
+                await Task.Delay(atualizaçãoporsegundo, tokendecancelamento);
             }
         }
 
