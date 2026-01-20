@@ -121,6 +121,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Audio Ducking";
+            FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             MouseMove += Form1_MouseMove;
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();

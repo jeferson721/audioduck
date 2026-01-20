@@ -9,7 +9,7 @@ namespace AudioDuck
 {
     public partial class Form1 : Form
     {
-        
+
         bool rodando = false;
         float volumemestre = 0;
         string meupid = "";
@@ -59,7 +59,7 @@ namespace AudioDuck
             {
                 cancelador?.Cancel();
                 rodando = false;
-                MessageBox.Show(" Ducking parado com sucesso!");
+                Debug.WriteLine(" Ducking parado com sucesso!");
             }
             catch (Exception ex)
             {
@@ -71,10 +71,10 @@ namespace AudioDuck
         }
 
         private async Task MetodoDeTrabalho(CancellationToken tokendecancelamento)
-        {         
+        {
             while (!tokendecancelamento.IsCancellationRequested)
-            {                        
-     
+            {
+
                 bool audioemalgumlugar = false;
                 AudioSessionControl? Minhasession = null;
 
@@ -139,7 +139,7 @@ namespace AudioDuck
                 MessageBox.Show("Nenhum item selecionado");
                 //rodando = false;
             }
-          
+
 
             AtualizaCor();
         }
@@ -221,6 +221,11 @@ namespace AudioDuck
             {
                 Parada();
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Parada();
         }
     }
 }
