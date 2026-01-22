@@ -72,11 +72,36 @@ namespace AudioDuck
 
         private async Task MetodoDeTrabalho(CancellationToken tokendecancelamento)
         {
+            string s = meupid;
+            string numeroStr = s.Split(':')[1].Split('_')[0];
+            uint pid = uint.Parse(numeroStr);
+
             while (!tokendecancelamento.IsCancellationRequested)
             {
-
+                var enumerator = new MMDeviceEnumerator();
+                var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+                var sessions = device.AudioSessionManager.Sessions;
                 bool audioemalgumlugar = false;
-                AudioSessionControl? Minhasession = null;
+                AudioSessionControl Minhasession = null;
+
+                for (int i = 0; i < sessions.Count; i++)
+                {
+                    var session = sessions[i];
+                    var meter = session.AudioMeterInformation;
+                    float volume = meter.MasterPeakValue;
+                    Debug.WriteLine($"-> ID:{session.GetProcessID} NAME:{session.DisplayName} Está emitindo áudio: {volume}");
+                    if (volume > 0.00001f && (!session.DisplayName.Contains("@%SystemRoot%", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        if (pid == session.GetProcessID)
+                        {
+                            Minhasession = session;
+                        }
+                        else
+                        {
+                            audioemalgumlugar = true;
+                        }
+                    }
+                }
 
                 if (!ProcessoAindaAberto()) { parar = true; break; }
 
