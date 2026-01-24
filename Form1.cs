@@ -21,11 +21,13 @@ namespace AudioDuck
             {
                 button1.BackColor = Color.PaleGreen;
                 button2.BackColor = Color.LightCoral;
+                comboBox1.Enabled = false;
             }
             else
             {
                 button1.BackColor = Color.Gainsboro;
                 button2.BackColor = Color.Gainsboro;
+                comboBox1.Enabled = true;
             }
 
         }
@@ -144,8 +146,7 @@ namespace AudioDuck
                 string? itemSelecionado = comboBox1.SelectedItem?.ToString();
                 if (!string.IsNullOrEmpty(itemSelecionado))
                 {
-                    meupid = itemSelecionado;
-                    //rodando = true;
+                    meupid = itemSelecionado;               
                     try
                     {
                         cancelador = new CancellationTokenSource();
@@ -161,13 +162,13 @@ namespace AudioDuck
                 else
                 {
                     MessageBox.Show("Nenhum item selecionado");
-                    // rodando = false;
+                    rodando = false;
                 }
             }
             else
             {
                 MessageBox.Show("Nenhum item selecionado");
-                //rodando = false;
+                rodando = false;
             }
 
 
