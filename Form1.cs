@@ -1,4 +1,3 @@
-
 using NAudio.CoreAudioApi;
 using System.Diagnostics;
 using System.Security.Cryptography;
@@ -76,13 +75,13 @@ namespace AudioDuck
             string numeroStr = s.Split(':')[1].Split('_')[0];
             uint pid = uint.Parse(numeroStr);
 
-            while (!tokendecancelamento.IsCancellationRequested)
+            while (true)
             {
                 var enumerator = new MMDeviceEnumerator();
                 var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
                 var sessions = device.AudioSessionManager.Sessions;
                 bool audioemalgumlugar = false;
-                AudioSessionControl Minhasession = null;
+                AudioSessionControl? Minhasession = null;
 
                 for (int i = 0; i < sessions.Count; i++)
                 {
@@ -101,9 +100,7 @@ namespace AudioDuck
                             audioemalgumlugar = true;
                         }
                     }
-                }
-
-                if (!ProcessoAindaAberto()) { parar = true; break; }
+                }               
 
                 if (Minhasession != null)
                 {
@@ -121,6 +118,16 @@ namespace AudioDuck
                         Minhasession.SimpleAudioVolume.Volume = 1;
                     }
                 }
+
+                if (tokendecancelamento.IsCancellationRequested || parar)
+                {
+                    Debug.WriteLine(" Ciclo Ducking cancelado com sucesso!");
+                    Minhasession?.SimpleAudioVolume.Volume = 1;
+                    break;
+                }
+
+                if (!ProcessoAindaAberto()) { parar = true; Minhasession?.SimpleAudioVolume.Volume = 1; break; }
+
                 Debug.WriteLine($"--------------------------------------------------------------");                
                 await Task.Delay(atualizaçãoporsegundo, tokendecancelamento);
             }
@@ -251,7 +258,7 @@ namespace AudioDuck
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
+        {          
             Parada();
         }
     }
