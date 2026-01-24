@@ -36,6 +36,7 @@
             button1 = new Button();
             button2 = new Button();
             comboBox1 = new ComboBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(17, 89);
+            label2.Location = new Point(15, 89);
             label2.Name = "label2";
             label2.Size = new Size(239, 15);
             label2.TabIndex = 2;
@@ -60,11 +61,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(262, 89);
+            label3.Location = new Point(260, 89);
             label3.Name = "label3";
-            label3.Size = new Size(34, 15);
+            label3.Size = new Size(13, 15);
             label3.TabIndex = 3;
-            label3.Text = "0,000";
+            label3.Text = "0";
             // 
             // trackBar1
             // 
@@ -106,11 +107,21 @@
             comboBox1.DropDown += ComboBox1_DropDown;
             comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(281, 89);
+            label4.Name = "label4";
+            label4.Size = new Size(17, 15);
+            label4.TabIndex = 8;
+            label4.Text = "%";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(312, 178);
+            Controls.Add(label4);
             Controls.Add(comboBox1);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -137,5 +148,6 @@
         private Button button1;
         private Button button2;
         private ComboBox comboBox1;
+        private Label label4;
     }
 }

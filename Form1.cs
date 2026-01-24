@@ -121,7 +121,7 @@ namespace AudioDuck
                         Minhasession.SimpleAudioVolume.Volume = 1;
                     }
                 }
-                Debug.WriteLine($"--------------------------------------------------------------");
+                Debug.WriteLine($"--------------------------------------------------------------");                
                 await Task.Delay(atualizaçãoporsegundo, tokendecancelamento);
             }
         }
@@ -231,8 +231,10 @@ namespace AudioDuck
 
         private void TrackBar1_ValueChanged(object sender, EventArgs e)
         {
-            label3.Text = trackBar1.Value.ToString();
-            volumemestre = trackBar1.Value / 100;
+            float valor_da_barra = trackBar1.Value;
+            label3.Text = valor_da_barra.ToString();
+            float valor_da_barra_inteiro = valor_da_barra / 100;                   
+            volumemestre = valor_da_barra_inteiro;
         }
 
         private void Form1_Load(object sender, EventArgs e)
