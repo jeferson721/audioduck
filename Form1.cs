@@ -14,8 +14,7 @@ namespace AudioDuck
         string meupid = "";
         bool parar = false;
         private CancellationTokenSource cancelador = new();
-        private const int atualizaçãoporsegundo = 300;
-
+        
         private void AtualizaCor()
         {
             if (rodando)
@@ -100,7 +99,7 @@ namespace AudioDuck
                             audioemalgumlugar = true;
                         }
                     }
-                }               
+                }
 
                 if (Minhasession != null)
                 {
@@ -128,8 +127,7 @@ namespace AudioDuck
 
                 if (!ProcessoAindaAberto()) { parar = true; Minhasession?.SimpleAudioVolume.Volume = 1; break; }
 
-                Debug.WriteLine($"--------------------------------------------------------------");                
-                await Task.Delay(atualizaçãoporsegundo, tokendecancelamento);
+                Debug.WriteLine($"--------------------------------------------------------------");               
             }
         }
 
@@ -240,7 +238,7 @@ namespace AudioDuck
         {
             float valor_da_barra = trackBar1.Value;
             label3.Text = valor_da_barra.ToString();
-            float valor_da_barra_inteiro = valor_da_barra / 100;                   
+            float valor_da_barra_inteiro = valor_da_barra / 100;
             volumemestre = valor_da_barra_inteiro;
         }
 
@@ -258,7 +256,7 @@ namespace AudioDuck
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {          
+        {
             Parada();
         }
     }
