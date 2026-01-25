@@ -11,13 +11,13 @@
 
 ## ✨ Sobre o projeto
 
-O **Ducker** é um utilitário leve para Windows que resolve um problema comum:
+O **AudioDuck** é um utilitário leve para Windows que resolve um problema comum:
 
 🎵 Você está ouvindo música  
 ▶️ Começa um vídeo no YouTube/Netflix/VLC  
 🔊 O som mistura tudo  
 
-Com o Ducker:
+Com o AudioDuck:
 
 ✔ O vídeo começa → a música abaixa automaticamente  
 ✔ O vídeo pausa → o volume volta ao normal  
@@ -29,7 +29,11 @@ Funciona com **qualquer app que use áudio no Windows**, pois opera diretamente 
 
 ## 🖼 Preview
 
-![Preview](audioduck/tree/master/fontes/imagem.jpg)
+<p align="center">
+  <strong> Interface principal do AudioDuck mostrando o monitoramento de aplicativos ativos e o ajuste automático do volume tempo real..</strong>
+
+  <img width="450" alt="audioduck screenshot" src="https://github.com/jeferson721/audioduck/blob/master/fontes/imagem.jpg">
+</p>
 
 ---
 
@@ -44,7 +48,7 @@ Funciona com **qualquer app que use áudio no Windows**, pois opera diretamente 
 
 ## 🧠 Como funciona
 
-O Ducker usa:
+O AudioDuck usa:
 
 - **WASAPI (Core Audio API do Windows)**
 - **NAudio**
