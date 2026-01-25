@@ -31,10 +31,10 @@ Funciona com **qualquer app que use áudio no Windows**, pois opera diretamente 
 
 <p align="center">
   <strong> Interface principal do AudioDuck.</strong>
-
-  <img width="30" alt="audioduck screenshot" src="https://github.com/jeferson721/audioduck/blob/master/fontes/imagem.jpg">
 </p>
-
+<p align="center">
+   <img width="400" alt="audioduck screenshot" src="https://github.com/jeferson721/audioduck/blob/master/fontes/imagem.jpg">
+</p>
 ---
 
 ## 🚀 Funcionalidades
