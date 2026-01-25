@@ -30,9 +30,9 @@ Funciona com **qualquer app que use áudio no Windows**, pois opera diretamente 
 ## 🖼 Preview
 
 <p align="center">
-  <strong> Interface principal do AudioDuck mostrando o monitoramento de aplicativos ativos e o ajuste automático do volume tempo real..</strong>
+  <strong> Interface principal do AudioDuck.</strong>
 
-  <img width="450" alt="audioduck screenshot" src="https://github.com/jeferson721/audioduck/blob/master/fontes/imagem.jpg">
+  <img width="30" alt="audioduck screenshot" src="https://github.com/jeferson721/audioduck/blob/master/fontes/imagem.jpg">
 </p>
 
 ---
