@@ -6,7 +6,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Status](https://img.shields.io/badge/status-active-success)]()
 
-> Reduz automaticamente o volume do Spotify (ou qualquer app) quando outro aplicativo começa a reproduzir áudio — e restaura quando para.
+> Reduz automaticamente o volume do Spotify (ou qualquer app) quando outro aplicativo começa a reproduzir áudio e restaura quando para.
 ---
 
 ## ✨ Sobre o projeto
@@ -29,7 +29,7 @@ Funciona com **qualquer app que use áudio no Windows**, pois opera diretamente 
 
 ## 🖼 Preview
 
-![Preview](AudioDuck\fontes\imagem.jpg)
+![Preview](audioduck/tree/master/fontes/imagem.jpg)
 
 ---
 
