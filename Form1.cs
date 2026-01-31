@@ -8,13 +8,14 @@ namespace AudioDuck
 {
     public partial class Form1 : Form
     {
-
+      
         bool rodando = false;
         float volumemestre = 0;
         string meupid = "";
         bool parar = false;
         private CancellationTokenSource cancelador = new();
-        
+        private const int atraso = 500;
+
         private void AtualizaCor()
         {
             if (rodando)
@@ -129,7 +130,8 @@ namespace AudioDuck
 
                 if (!ProcessoAindaAberto()) { parar = true; Minhasession?.SimpleAudioVolume.Volume = 1; break; }
 
-                Debug.WriteLine($"--------------------------------------------------------------");               
+                Debug.WriteLine($"--------------------------------------------------------------");
+                await Task.Delay(atraso, tokendecancelamento);
             }
         }
 
