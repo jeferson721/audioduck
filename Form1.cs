@@ -132,6 +132,11 @@ namespace AudioDuck
 
                 Debug.WriteLine($"--------------------------------------------------------------");
                 await Task.Delay(atraso, tokendecancelamento);
+                /* ATENÇÃO " await Task.Delay(atraso, tokendecancelamento);" isso causa um pequeno bug.
+                 * quando o programa é fechado ou encerrado ele não volta ao volume original, pois está 
+                 * no await esperando, por conseguinte o volume no mix do windows fica baixo e para voltar
+                 * ao normal somente alterando manualmente. Certo em breve eu vou imprementar uma solução 
+                 * para isso OK!.*/
             }
         }
 
