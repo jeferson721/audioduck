@@ -30,7 +30,6 @@ namespace AudioDuck
                 button2.BackColor = Color.Gainsboro;
                 comboBox1.Enabled = true;
             }
-
         }
 
         private bool ProcessoAindaAberto()
